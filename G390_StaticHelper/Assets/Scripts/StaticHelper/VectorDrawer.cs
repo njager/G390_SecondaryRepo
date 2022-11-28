@@ -14,6 +14,14 @@ public static class VectorDrawer
         direction = direction.normalized;
         Debug.DrawLine(startPoint, direction * distance, vectorColor);
     }
+    public static void DebugDrawOffsetVector(Vector3 startPoint, Vector3 offset)
+    {
+        Debug.DrawLine(startPoint, startPoint + offset);
+    }
+    public static void DebugDrawOffsetVector(Vector3 startPoint, Vector3 offset, Color vectorColor)
+    {
+        Debug.DrawLine(startPoint, startPoint + offset, vectorColor);
+    }
     public static void DrawVectorGizmo(Vector3 startPoint, Vector3 endPoint)
     {
         Gizmos.color = Color.white;
@@ -31,8 +39,33 @@ public static class VectorDrawer
         Gizmos.DrawLine(startPoint, endPoint);
         Gizmos.color = Color.white;
     }
-
-    
+    public static void DrawBasisVectors(Vector3 origin, Vector3 right, Vector3 up, Vector3 forward)
+    {
+        DebugDrawOffsetVector(origin, right, Color.red);
+        DebugDrawOffsetVector(origin, up, Color.green);
+        DebugDrawOffsetVector(origin, forward, Color.blue);
+    }
+    public static void DrawBasisVectors(Transform transform)
+    {
+        Vector3 position = transform.position;
+        DebugDrawOffsetVector(position, transform.right, Color.red);
+        DebugDrawOffsetVector(position, transform.up, Color.green);
+        DebugDrawOffsetVector(position, transform.forward, Color.blue);
+    }
+    public static void DrawBasisVectors(Vector2 origin, Vector2 right, Vector2 up)
+    {
+        DebugDrawOffsetVector(origin, right, Color.red);
+        DebugDrawOffsetVector(origin, up, Color.green);
+    }
+    public static void DrawBasisVectorsGizmos(Vector3 origin, Vector3 right, Vector3 up, Vector3 forward)
+    {
+        Gizmos.color = Color.red;
+        DrawVectorGizmo(origin, origin + right);
+        Gizmos.color = Color.green;
+        DrawVectorGizmo(origin, origin + up);
+        Gizmos.color = Color.blue;
+        DrawVectorGizmo(origin, origin + forward);
+    }
 }
 
 
