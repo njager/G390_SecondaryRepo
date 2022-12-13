@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RealClock : MonoBehaviour
 {
-    const float hourRotation = -30f, minuteRotation = -6f;
+    const float hourRotation = 30f, minuteRotation = 6f;
     public Transform hourHandPivot, minuteHandPivot, secondHandPivot;
     // Update is called once per frame
     void Update()
